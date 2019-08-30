@@ -1,0 +1,19 @@
+/*ler em um arquivo txt*/
+/*criar o arquivo com 3 int*/
+
+#include <stdio.h>
+
+int main() {
+	FILE *file;
+	int x, y, z;
+	file = fopen("numero.txt", "r");
+	if (file == NULL) {
+		printf("O arquivo nao pode ser aberto\n");
+		return(0);
+	}
+
+	fscanf(file, "%d %d %d", &x, &y, &z);
+	printf("%d\n %d\n %d\n", x, y, z);
+	fclose(file);
+	return 1;
+}

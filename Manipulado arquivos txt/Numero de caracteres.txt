@@ -1,0 +1,19 @@
+/*conta o numero de caracteres de um arquivo txt*/
+
+#include <stdio.h>
+
+int main() {
+	FILE *file;
+	int x = 0;
+	file = fopen("Texto1.txt", "r");
+	if (file == NULL) {
+		printf("Nao foi possivel abrir o aquivo!\n");
+		return 0;
+	}
+	while (fgetc(file) !=EOF) { //error of file
+		x++;
+	}
+	fclose(file);
+	printf("%d\n", x);
+	return 0;
+}

@@ -1,0 +1,128 @@
+#include "FuncParaArquivotxt.h"
+
+int main() {
+	FILE *file;
+	char c;
+
+	file = fopen("Texto1.txt", "r");
+	if (file == NULL) {
+		printf("Nao foi possivel abrir o aquivo!\n");
+		return 0;
+	}
+	printf("Numero de linhas: %d\n", CalculaNumLinhas(file));
+	fclose(file);
+
+	file = fopen("Texto2.txt", "r");
+	if (file == NULL) {
+		printf("Nao foi possivel abrir o aquivo!\n");
+		return 0;
+	}
+	printf("Numero de caracteres: %d\n", CalulaNumCaracteres(file));
+	fclose(file);
+
+	file = fopen("Texto3.txt", "r");
+	if (file == NULL) {
+		printf("Nao foi possivel abrir o aquivo!\n");
+		return 0;
+	}
+	printf("Montante total de transacoes: %f\n", SomaMontanteTotal(file));
+	fclose(file);
+
+	file = fopen("Texto2.txt", "r");
+	if (file == NULL) {
+		printf("Nao foi possivel abrir o aquivo!\n");
+		return 0;
+	}
+	printf("Qual caractere deseja verificar? \n");
+	scanf("%c", &c); fflush(stdin);
+	printf("Numero total de caracteres '%c': %d\n", c, CalulaNumCaractereEspefico(c, file));
+	fclose(file);
+
+	file = fopen("Texto3.txt", "r");
+	if (file == NULL) {
+		printf("Nao foi possivel abrir o aquivo!\n");
+		return 0;
+	}
+	printf("Numero de digitos: %d\n", CalculaNumDigitos(file));
+	fclose(file);
+
+	file = fopen("Texto2.txt", "r");
+	if (file == NULL) {
+		printf("Nao foi possivel abrir o aquivo!\n");
+		return 0;
+	}
+	printf("Numero de letras minusculas: %d\n", CalculaNumMinusculas(file));
+	
+	rewind(file);
+	printf("Numero de letras maiusculas: %d\n", CalculaNumMaiusculas(file));
+	fclose(file);
+
+	return 0;
+}
+
+/*header file*/
+#ifndef FUNCPARAARQUIVOTXT_H
+#define FUNCPARAARQUIVOTXT_H
+
+#include<stdio.h>
+
+int CalculaNumLinhas(FILE *file) {
+	int y = 0;
+	char string[1000];
+	while (fgets(string, 1000, file) != NULL)
+		y++;
+	return y;
+}
+
+int CalulaNumCaracteres(FILE *file) {
+	int x = 0;
+	while (fgetc(file) != EOF)
+		x++;
+	return x;
+}
+
+float SomaMontanteTotal(FILE *file) {
+	float mt = 0.0, f = 0.0;
+	while (fscanf(file, "%f", &f) != EOF) {
+		mt += f;
+	}
+	return mt;
+}
+
+int CalulaNumCaractereEspefico(char c, FILE *file) {
+	int z = 0;
+	char p;
+	while ((p = fgetc(file)) != EOF)
+		if (p == c)
+			z++;
+	return z;
+}
+
+int CalculaNumDigitos(FILE *file) {
+	int x = 0;
+	char p;
+	while ((p = fgetc(file)) != EOF)
+		if ((p >= 48) && (p <= 57))
+			x++;
+	return x;
+}
+
+int CalculaNumMinusculas(FILE *file) {
+	int x = 0;
+	char p;
+	while ((p = fgetc(file)) != EOF)
+		if ((p >= 97) && (p <= 122))
+			x++;
+	return x;
+ }
+
+int CalculaNumMaiusculas(FILE *file) {
+	int x = 0;
+	char p;
+	while ((p = fgetc(file)) != EOF)
+		if ((p >= 65) && (p <= 90))
+			x++;
+	return x;
+}
+
+#endif

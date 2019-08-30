@@ -1,0 +1,22 @@
+/*incluir dados em um arquivo txt*/
+/*criar o arquivo com um string*/
+
+#include <stdio.h>
+
+int main() {
+	FILE *file;
+	char frase[] = "Segunda linha", caractere = '3';
+	file = fopen("string.txt", "a");
+	if (file == NULL) {
+		printf("O arquivo nao pode ser aberto\n");
+		return(0);
+	}
+	fprintf(file, "Primeira linha\n");
+	fputs(frase, file);
+	fprintf(file, "\n");
+	fputc(caractere, file);	
+	fclose(file);
+	printf("\n");
+	return 1;
+}
+

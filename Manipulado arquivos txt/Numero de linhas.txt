@@ -1,0 +1,19 @@
+#include <stdio.h>
+
+/*conta o numero de linhas do arquivo*/
+int main() {
+	FILE *file;
+	char string[1000];
+	int x = 0;
+	file = fopen("Texto1.txt", "r");
+	if (file == NULL) {
+		printf("Nao foi possivel abrir o aquivo!\n");
+		return 0;
+	}
+	while (fgets(string, 1000, file) != NULL) {
+		x++;
+	}
+	fclose(file);
+	printf("%d\n", x);
+	return 0;
+}
